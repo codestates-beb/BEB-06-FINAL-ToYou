@@ -1,6 +1,6 @@
 const Header = () => {
     return (
-    <div>헤더</div>
+    <div>헤더입니다</div>
     )
 }
 
