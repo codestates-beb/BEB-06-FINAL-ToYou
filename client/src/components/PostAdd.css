@@ -1,0 +1,43 @@
+/* 정보 + 게시물 컨테이너 */
+.Mypage__content{
+    width: 20%;
+    margin-top: 20px;
+    margin-right: 100px;
+    display: flex;
+    float:right;
+}
+/* 왼쪽 - 내정보/NFT  */
+.Mypage__content-grup{
+    flex-grow: 1;
+    width: 50%;
+}
+/* 왼쪽 - 내정보  */
+.Mypage__content-grup-info{
+    line-height: 20px;
+    margin: 10px 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 10px;
+    padding-right: 0px;
+    text-align: left;
+    align-items: left;
+    font-size: 20px;
+    font-weight: 800;
+    
+    /* background-color: #1f1f1f; */
+}
+
+.transmission-container{
+    display: none;
+}
+
+.displayblock{
+    display: block;
+}
+
+.open-transmission-container{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin: auto;
+}
