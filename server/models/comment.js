@@ -1,28 +1,34 @@
 //세부 게시글 댓글기능.
-
+const {user} = require("../models/user")
 const mongoose = require('mongoose');
+const { board } = require("./board");
+const moment = require('moment');
+const date= moment().format('YYYY-MM-DD HH:mm:ss');
 const Schema = mongoose.Schema;
 
-/*
+
 const commentSchema = mongoose.Schema({
     writer: {
         type: Schema.Types.ObjectId,
-        ref: 
+        ref:user
     }, 
     postId: {
         type: Schema.Types.ObjectId,
-        ref: 
+        ref:user
     },
-    responseTo: {
+    boardId: {
         type: Schema.Types.ObjectId,
-        ref: 
+        ref:board 
     },
     content: {
         type: String
+    },
+    createAT:{
+        type:String,
+        default: date,
     }
 
-}, { timestamps: true })
-*/
+})
 
 const Comment = mongoose.model('Comment', commentSchema);
 

@@ -11,7 +11,7 @@ mongoose.connect(process.env.DB_PORT,{
 }).then(() => console.log('MongoDB connected..'))
 .catch(err => console.log(err))
 
-app.use('/', require('./routes/toyou.js'))
+
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(
@@ -21,7 +21,8 @@ app.use(
     }),
   );
 
-
+  app.use('/', require('./routes/toyou.js'))
+  app.use('/', require('./routes/user.js'))
 
 
 
