@@ -7,8 +7,9 @@ import CommunityPage from './pages/CommunityPage';
 import InvestPage from './pages/InvestPage';
 import StartupPage from './pages/StartupPage';
 import CreateProjectPage from './pages/CreateProjectPage';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import PostAdd from './components/PostAdd/PostAdd';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path='/signup' element={<SignupPage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/community' element={<CommunityPage />} />
+            <Route path='/postadd' element={<PostAdd />} />
             <Route path='/invest' element={<InvestPage />} />
             <Route path='/startup' element={<StartupPage />} />
             <Route path='/project' element={<CreateProjectPage />} />

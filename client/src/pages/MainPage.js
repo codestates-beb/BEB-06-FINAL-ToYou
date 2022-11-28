@@ -1,6 +1,9 @@
+import React, { useState, useRef, useContext } from 'react';
+import Detail from "../components/Detail/Detail";
+
 const MainPage = () => {
     return (
-    <div>메인페이지 테스트</div>
+        <Detail/>
     )
 }
 
