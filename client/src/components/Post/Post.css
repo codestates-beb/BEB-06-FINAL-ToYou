@@ -1,0 +1,82 @@
+.inner-main-body {
+    padding: 1rem;
+    overflow-y: auto;
+    position: relative;
+    /* flex: 1 1 auto; */
+}
+
+.card-2 {
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+    height: auto;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.card-body {
+    height: auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+}
+
+.media {
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.media-body {
+    text-align: left;
+    flex: 1;
+}
+
+.text-title {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 800;
+    width: 600px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.text-comment {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    width: 600px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.text-nickname {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.text-secondary {
+    color: #6c757d!important;
+    margin-left: 10px;
+}
+
+.text-muted {
+    display: flex;
+    align-items: center;
+}
+
+.text-icon {
+    margin-left: 10px;
+    padding-right: 10px
+}
+
+.far {
+    margin-right: 10px ;
+}
+
+.text-board {
+    display: flex;
+    align-items:flex-end;
+    padding-top: 20px
+}

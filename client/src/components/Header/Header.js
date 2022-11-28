@@ -1,18 +1,19 @@
 import React, { useState, useContext, useEffect } from 'react'
 import {Link} from 'react-router-dom';
-import logo from '../icon/toyou.png'
 import './Header.css'
 
 const Header = () => {
     return (
-        <header className='header_wrapper'>
+        <div className='header_wrapper'>
         <div className='header_container'>
         {/* 로고 */}
-        <h1>
-            <a href="/">
-                <span>To-you</span>
-            </a>
-        </h1>
+        <li className='header__logo'>
+                <Link to="/" className='link'>
+                    <span className='header__navmenu__button__icon'>
+                        To-You
+                    </span>
+                </Link>
+            </li>
         {/* 네비게이션 메뉴(왼쪽) */}
         <ul className='header__navmenu_left'>
             {/* 커뮤니티 버튼 */}
@@ -64,7 +65,7 @@ const Header = () => {
             {/* 프로젝트 생성 버튼 */}
             <li className='header__project__button'>
                 <Link to="/project">
-                    <button class="project__button" type="button">
+                    <button className="project__button" type="button">
                         <span>프로젝트 만들기</span>
                     </button>
                 </Link>
@@ -79,7 +80,7 @@ const Header = () => {
             </li> */}
         </ul>
     </div>
-  </header>    
+  </div>    
 )
 }
 

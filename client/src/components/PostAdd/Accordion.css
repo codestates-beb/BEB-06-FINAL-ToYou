@@ -1,0 +1,57 @@
+  /* .accordion_container {
+    max-width: 600px;
+    margin: 6rem auto 4rem;
+    padding: 0 10px;
+  }
+  
+  .accordion_heading {
+    font-size: 23px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  } */
+  
+  .accordion {
+    list-style: none;
+  }
+
+  .accordion_item {
+    margin-top: 10px;
+  }
+    
+  .accordion_button {
+    font-size: 16px;
+    background-color: #00a2a2;
+    color: #fff;
+    text-align: left;
+    font-weight: 700;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 15px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+  }
+  
+  .accordion_control {
+    font-size: 20px;
+  }
+  
+  .accordion_answer {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  
+  /* activate toggle */
+  .accordion_item.active .button {
+    background-color: #00a2a2;
+  }
+  .accordion_answer_wrapper {
+    height: 0;
+    overflow: hidden;
+    transition: height ease 0.2s;
+  }
