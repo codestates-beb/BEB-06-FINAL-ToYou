@@ -26,12 +26,18 @@ const boardSchema = mongoose.Schema({
         default:0,
     },
     up:{
-        type:String,
+        type:Number,
         default:0,
     },
     content:{
         type: String,
         default:0,
+    },
+    image:{
+        type:String
+    },
+    Type:{
+        type: Number
     },
     createAT:{
         type:String,

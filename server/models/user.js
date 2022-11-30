@@ -55,6 +55,10 @@ const userSchema = mongoose.Schema({
         type:String,
         default: date,
     },
+    userTpye:{
+        type:Number,
+        default:0
+    }
 })
 
 

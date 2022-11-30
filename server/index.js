@@ -14,6 +14,7 @@ mongoose.connect(process.env.DB_PORT,{
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+app.use('/image', express.static('./public'))
 app.use(
     cors({
       origin: true, // '*' 안됨 -> 정확한 주소 또는 origin: true로 해도 됨

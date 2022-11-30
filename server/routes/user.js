@@ -3,6 +3,8 @@ const router = express.Router();
 const { user } = require("../models/user");
 const { board } = require("../models/board");
 const { Comment } = require('../models/comment');
+const multer = require('multer');
+const Upload = require('../middleware/image-upload');
 
 
 
@@ -70,6 +72,29 @@ router.get("/board/:boardId", (req, res) => {
     });  
 
 });
+
+router.get('/community/:number', async (req, res) => {
+    try {
+      const number =await board.findOne({ number: req.params.number }).populate('Id'); 
+      console.log(number)
+      const count = number.click++;
+      
+      
+     board.updateOne({_id:number._id},{$inc: {click:1}},function(){});
+      
+  
+      res.json(number);
+    } catch (err) {
+      console.error(err);
+    }
+  });
+
+
+
+
+
+
+
 
 //댓글 작성
 router.post("/comment", (req, res) => {
@@ -156,5 +181,38 @@ router.get("/board", (req, res) => {
         return res.json(docs);
     })
 });
+
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './public/profile');
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname);
+    },
+  });
+  
+  const upload = multer({ storage: storage }).single("file");
+  
+  router.post("/image/board", (req, res) => {
+    console.log(req.body,"요청")
+    upload(req, res, (err) => {
+      if (err) {
+        res.status(400).json({ success: false });
+      } else {
+        res.status(200).json({success: true ,filepath:res.req.file.path })
+      }
+    });
+  });
+
+router.post("/image1", Upload.single("file"),function(req,res){
+    console.log(req.body,"요청")
+    res.status(200).json({success: true ,filepath:res.req.file.path })
+})
+
+router.post("/regist/image", Upload.single("file"),function(req,res){
+    console.log(req.body,"요청")
+    res.status(200).json({success: true ,filepath:res.req.file.path })
+})
 
 module.exports = router;
