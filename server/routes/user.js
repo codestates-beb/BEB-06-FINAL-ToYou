@@ -194,7 +194,7 @@ const storage = multer.diskStorage({
   
   const upload = multer({ storage: storage }).single("file");
   
-  router.post("/image/board", (req, res) => {
+  router.post("/board/image", (req, res) => {
     console.log(req.body,"요청")
     upload(req, res, (err) => {
       if (err) {
@@ -205,10 +205,7 @@ const storage = multer.diskStorage({
     });
   });
 
-router.post("/image1", Upload.single("file"),function(req,res){
-    console.log(req.body,"요청")
-    res.status(200).json({success: true ,filepath:res.req.file.path })
-})
+
 
 router.post("/regist/image", Upload.single("file"),function(req,res){
     console.log(req.body,"요청")

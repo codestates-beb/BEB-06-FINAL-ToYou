@@ -37,4 +37,10 @@ router.get('/community', function (req,res){
 
 
 
+
+
+
+
+
+
 module.exports = router;
