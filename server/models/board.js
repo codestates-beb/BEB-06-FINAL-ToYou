@@ -5,10 +5,10 @@ const { Schema } = require('mongoose');
 const date= moment().format('YYYY-MM-DD HH:mm:ss');
 const AutoIncrement = require("mongoose-sequence")(mongoose);
 
+const schema = mongoose.Schema;
 
-
-const boardSchema = mongoose.Schema({
-    Id:{
+const boardSchema =new schema({
+    id:{
         type: Schema.Types.ObjectId,  
         ref:'user',
         require: true
@@ -16,6 +16,7 @@ const boardSchema = mongoose.Schema({
     number:{
         type: Number,
         default:0,
+        
     },
     title:{
         type: String,
@@ -25,10 +26,7 @@ const boardSchema = mongoose.Schema({
         type:String,
         default:0,
     },
-    up:{
-        type:Number,
-        default:0,
-    },
+    
     content:{
         type: String,
         default:0,
@@ -39,6 +37,10 @@ const boardSchema = mongoose.Schema({
     Type:{
         type: Number
     },
+    up:[{
+        type: Schema.Types.ObjectId,  
+        ref:'user'
+    }],
     createAT:{
         type:String,
         default: date,

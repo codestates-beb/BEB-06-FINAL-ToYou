@@ -5,6 +5,8 @@ const { board } = require("../models/board");
 const { Comment } = require('../models/comment');
 const multer = require('multer');
 const Upload = require('../middleware/image-upload');
+const { imageUp } = require('../controllers/user');
+const { PostImage } = require('../controllers/board');
 
 
 
@@ -13,17 +15,10 @@ const data = user.find({},function(err,docs){
     return docs;
 })
 
+//회원가입-------------------------회원가입/로그인
+router.post("/register",Upload.single('image'),imageUp)
 
-router.post("/register", (req, res) => {
 
-    //클라이언트 에서 받아서 DB에 저장
-    const 유저 = new user(req.body)
-    유저.save((err,doc)=>{
-        if(err) return res.status(404).json({fail: false, err})
-        return res.status(200).json({success:true})
-    })
-
-});
 
 
 router.post("/login", (req, res) => {
@@ -44,21 +39,13 @@ router.post("/login", (req, res) => {
     
 });
 
-//글쓰기
-router.post("/Write", (req, res) => {
 
-    //클라이언트 에서 받아서 DB에 저장
-    const 게시물 = new board(req.body)
-    게시물.save((err,doc)=>{
-        if(err) return res.status(404).json({fail: false, err})
-        return res.status(200).json({success:true})
-    })
-
-});
+//글쓰기--------------------------------------커뮤니티
+router.post("/write",Upload.single('image'),PostImage)
 
 //커뮤니티페이지 게시글 세부내용 보기
-router.get("/board/:boardId", (req, res) => {
-    const 보드아이디 = req.params.boardId;
+router.get("/post/:post_id", (req, res) => {
+    const 보드아이디 = req.params.post_id;
     console.log(보드아이디)
 
     board.findById(보드아이디, (err, users)=>{
@@ -73,17 +60,42 @@ router.get("/board/:boardId", (req, res) => {
 
 });
 
-router.get('/community/:number', async (req, res) => {
+// 커뮤니티페이지 게시글 조회수 기능테스트
+router.post('/community/:number', async (req, res) => {
+    console.log(req.body)
     try {
-      const number =await board.findOne({ number: req.params.number }).populate('Id'); 
-      console.log(number)
-      const count = number.click++;
-      
-      
-     board.updateOne({_id:number._id},{$inc: {click:1}},function(){});
+      const number =await board.findOne({ _id: req.params.number }).then(num =>{
+        const count = req.body.click
+         board.updateOne({_id:num._id},{$set: {click:count}},function(){});
+        return res.status(200).json(num);
+       
+      })
+    
       
   
-      res.json(number);
+      
+    } catch (err) {
+      console.error(err);
+    }
+  });
+
+
+// 게시물 좋아요 기능
+  router.put('/community/:number/up', async (req, res) => {
+    try {
+      const postID = req.body.postID;
+      const userID = req.body._id;
+      const Up = req.body.up && req.body.up.includes(postID)
+
+      const option = Up ? "$pull" : "$addToSet";
+        console.log(option)
+      req.body._id = await board.findByIdAndUpdate(postID, { [option]: {up:userID} },{new:true})
+      .catch(err =>{
+        res.status(400).json({success:false})
+      })
+       
+  
+        res.status(200).json({success:true})
     } catch (err) {
       console.error(err);
     }
@@ -96,14 +108,14 @@ router.get('/community/:number', async (req, res) => {
 
 
 
-//댓글 작성
+//댓글 작성-----------------------------------------------------
 router.post("/comment", (req, res) => {
     const 댓글 = new Comment(req.body)
     console.log(댓글,"댓글")
     댓글.save((err,doc)=>{
         if(err) return res.status(404).json({fail: false, err})
         
-        Comment.find({'writer':doc.writer}).populate('writer').exec((err,result)=>{
+        Comment.find({'ID':doc.ID}).populate('ID').exec((err,result)=>{
             if(err) return res.json({succsess: false, err})
             res.status(200).json({success:true,result})
         })
@@ -112,23 +124,9 @@ router.post("/comment", (req, res) => {
 
 });
 
-router.get("/comment/:id", (req, res) => {
-    const 보드아이디 = req.params.id;
+//   댓글조회
 
-    board.findById(보드아이디, (err, users)=>{
-        console.log(users,"유저스")
-        if(!users){
-            return res.status(404).json({fail: false, err})
-        } else{
-            return res.status(200).json(users)
-        }
-        
-    });  
-
-});
-
-
-router.get('/:id/comment', async (req, res) => {
+router.get('/comment/:id', async (req, res) => {
     try {
       const comments = await Comment.find({ boardId: req.params.id }).populate('boardId'); 
       // Comment에서 commenter를 objectId를 받아 찾은뒤 populate("commenter")를 하여 보기쉬운 객체형식으로 바꿔줍니다.
@@ -183,18 +181,10 @@ router.get("/board", (req, res) => {
 });
 
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, './public/profile');
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname);
-    },
-  });
-  
-  const upload = multer({ storage: storage }).single("file");
-  
-  router.post("/image/board", (req, res) => {
+
+
+//이미지 업로드 부분.  
+  router.post("/board/image", (req, res) => {
     console.log(req.body,"요청")
     upload(req, res, (err) => {
       if (err) {
@@ -205,14 +195,13 @@ const storage = multer.diskStorage({
     });
   });
 
-router.post("/image1", Upload.single("file"),function(req,res){
-    console.log(req.body,"요청")
-    res.status(200).json({success: true ,filepath:res.req.file.path })
-})
 
-router.post("/regist/image", Upload.single("file"),function(req,res){
+
+router.post("/regist/image", Upload.single("image"),function(req,res){
     console.log(req.body,"요청")
     res.status(200).json({success: true ,filepath:res.req.file.path })
 })
 
 module.exports = router;
+
+
