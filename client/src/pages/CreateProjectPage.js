@@ -1,7 +1,8 @@
+import React from "react";
+import CreateProjectForm from "../components/CreateProject/CreateProjectForm";
+
 const CreateProjectPage = () => {
-    return (
-    <div>프로젝트</div>
-    )
-}
+  return <CreateProjectForm />;
+};
 
 export default CreateProjectPage;

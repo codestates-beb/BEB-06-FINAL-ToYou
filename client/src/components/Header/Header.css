@@ -61,6 +61,7 @@ a {
 
 .header__navmenu__button__icon {
   margin-top: 15px;
+  cursor: pointer;
 }
 .header__navmenu__button__icon:hover {
   color: #a41d1d;

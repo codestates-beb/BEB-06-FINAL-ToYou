@@ -1,7 +1,8 @@
+import React from "react";
+import StartupPageForm from "../components/StartupPage/StartupPageForm";
+
 const StartupPage = () => {
-    return (
-    <div>스타트업</div>
-    )
-}
+  return <StartupPageForm />;
+};
 
 export default StartupPage;

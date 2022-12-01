@@ -2,15 +2,15 @@ import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useRecoilState } from "recoil";
+import { userState } from "../../recoil";
 import "./LoginForm.css";
-// import Popup from '../components/Popup'
-// import { UseContext } from '../User/UserContextProvider'
 
 const LoginForm = () => {
   const navigator = useNavigate();
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
-  // const {setCookiesHandler} =useContext(UseContext);
+  const [user, setUser] = useRecoilState(userState);
 
   const onChangeUserId = (e) => {
     setUserId(e.target.value);
@@ -27,7 +27,7 @@ const LoginForm = () => {
   const handleClickLogin = () => {
     axios
       .post(
-        "http://localhost:5000/user/login",
+        "http://localhost:4000/login",
         {
           id: userId,
           pwd: password,
@@ -36,7 +36,8 @@ const LoginForm = () => {
       )
       .then(function (response) {
         // 로그인 성공시 메인페이지로 이동
-        // setCookiesHandler(true);
+        console.log(response.data);
+        setUser(response.data);
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -56,8 +57,12 @@ const LoginForm = () => {
 
   return (
     <div className="login_wrapper">
-      <form className="login_form" onSubmit={handleSubmit}>
-        <h1>회원가입</h1>
+      <form
+        encType="multipart/form-data"
+        className="login_form"
+        onSubmit={handleSubmit}
+      >
+        <h1>로그인</h1>
         <input
           type="text"
           placeholder="아이디"
