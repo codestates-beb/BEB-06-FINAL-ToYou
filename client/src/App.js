@@ -6,10 +6,12 @@ import LoginPage from "./pages/LoginPage";
 import CommunityPage from "./pages/CommunityPage";
 import InvestPage from "./pages/InvestPage";
 import StartupPage from "./pages/StartupPage";
+import StartupDetail from "./components/StartupPage/StartupDetail";
 import CreateProjectPage from "./pages/CreateProjectPage";
 import PostAdd from "./components/PostAdd/PostAdd";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import MyPage from "./pages/MyPage";
 
 function App() {
   return (
@@ -24,7 +26,9 @@ function App() {
           <Route path="/postadd" element={<PostAdd />} />
           <Route path="/invest" element={<InvestPage />} />
           <Route path="/startup" element={<StartupPage />} />
+          <Route path="/startup/:id" element={<StartupDetail />} />
           <Route path="/project" element={<CreateProjectPage />} />
+          <Route path="mypage/:id" element={<MyPage />} />
         </Routes>
         <Footer />
       </div>

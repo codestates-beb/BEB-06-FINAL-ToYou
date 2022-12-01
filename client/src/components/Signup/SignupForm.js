@@ -8,7 +8,6 @@ import "./SignupForm.css";
 const SignupForm = () => {
   const navigator = useNavigate();
   const [positionSelect, setPositionSelect] = useState("");
-  const [isSelectPosition, setIsSelectPosition] = useState(false);
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
@@ -32,20 +31,12 @@ const SignupForm = () => {
 
   const onChangeSelect = (e) => {
     setPositionSelect(e.target.value);
-    if (positionSelect === "0") {
-      return setIsSelectPosition(true);
-    }
-    if (positionSelect === "1") {
-      return setIsSelectPosition(true);
-    }
-    if (positionSelect === "2") {
-      return setIsSelectPosition(true);
-    }
   };
 
   const onChangeProfileImage = (e) => {
-    setProfileImage(e.target.value);
+    setProfileImage(e.target.files[0]);
   };
+  // console.log(profileImage);
   const onChangeBusinessImage = (e) => {
     setBusinessImage(e.target.value);
   };
@@ -135,15 +126,26 @@ const SignupForm = () => {
   };
 
   const handleSubmitClick = (e) => {
+    const formData = new FormData();
+    formData.append("image", profileImage);
     if (positionSelect === "0") {
       return axios
-        .post("http://localhost:5000/user/regist", {
-          id: userId,
-          pwd: password,
-          email: email,
-          nick: nickName,
-          profile: profileImage,
-        })
+        .post(
+          "http://localhost:4000/register",
+          {
+            userType: positionSelect,
+            id: userId,
+            pwd: password,
+            email: email,
+            nick: nickName,
+            image: formData,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        )
         .then(function (response) {
           Swal.fire({
             position: "center",
@@ -164,7 +166,8 @@ const SignupForm = () => {
 
     if (positionSelect === "1") {
       return axios
-        .post("http://localhost:5000/user/regist", {
+        .post("http://localhost:4000/register", {
+          userType: positionSelect,
           id: userId,
           pwd: password,
           email: email,
@@ -192,7 +195,8 @@ const SignupForm = () => {
 
     if (positionSelect === "2") {
       return axios
-        .post("http://localhost:5000/user/regist", {
+        .post("http://localhost:4000/register", {
+          userType: positionSelect,
           id: userId,
           pwd: password,
           email: email,
@@ -221,7 +225,11 @@ const SignupForm = () => {
 
   return (
     <div className="signup_wrapper">
-      <form className="signup_form" onSubmit={handleSubmit}>
+      <form
+        encType="multipart/form-data"
+        className="signup_form"
+        onSubmit={handleSubmit}
+      >
         <h1>회원가입</h1>
         <select onChange={onChangeSelect} value={positionSelect}>
           <option>직책을 선택해주세요</option>
@@ -289,30 +297,26 @@ const SignupForm = () => {
             {nickNameMsg}
           </span>
         )}
-
-        <input
-          type="file"
-          placeholder="이미지"
-          onChange={onChangeProfileImage}
-        />
+        <input accept="img/*" type="file" onChange={onChangeProfileImage} />
+        <p>프로필 사진을 등록해주세요.</p>
         {positionSelect === "1" && (
           <>
-            <span className="signup_form_position_text">사업자 등록증</span>
             <input
               type="file"
               placeholder="이미지"
               onChange={onChangeBusinessImage}
             />
+            <p>기업회원은 사업자 등록증을 등록해주세요.</p>
           </>
         )}
         {positionSelect === "2" && (
           <>
-            <span className="signup_form_position_text">자격증</span>
             <input
               type="file"
               placeholder="이미지"
               onChange={onChangeCertificateImage}
             />
+            <p>전문가 회원은 자격증을 등록해주세요.</p>
           </>
         )}
         <button type="submit" onClick={handleSubmitClick}>

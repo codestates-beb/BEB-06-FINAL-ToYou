@@ -1,0 +1,193 @@
+/* * {
+  font-family: "Pretendard", "Noto Sans KR", Roboto;
+} */
+
+.ant_layout {
+  min-width: 1280px;
+  width: 100%;
+  background-color: #f8fafd;
+  display: flex;
+  -webkit-box-flex: 1;
+  flex: auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  min-height: 0;
+  background: #f0f2f5;
+}
+
+.ant_layout * {
+  box-sizing: border-box;
+}
+
+.index_content_qx {
+  margin: 5px auto 70px auto;
+  padding: 0 30px;
+  position: relative;
+  min-height: 720px;
+  width: 1280px;
+}
+
+.ant_layout_content {
+  -webkit-box-flex: 1;
+  flex: auto;
+}
+
+.index_main_area {
+  display: inline-block;
+  width: 776px;
+  margin-top: 15px;
+  border: 1px solid #eaedf0;
+  background: #ffffff;
+  vertical-align: top;
+}
+
+.index_section_title {
+  padding: 16px;
+  border-bottom: 1px solid #eaedf0;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1a1e27;
+}
+
+.index_write_area {
+  padding: 24px;
+  display: block;
+}
+
+.index_menu_board {
+  padding-bottom: 5px;
+  display: block;
+}
+
+.index_select_box {
+  display: inline-block;
+  position: relative;
+  min-width: 170px;
+  height: 40px;
+  margin-right: 16px;
+  border: 1px solid #eaedf0;
+  border-radius: 6px;
+  background: #ffffff;
+  z-index: 10;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 20px;
+  color: #353c49;
+  padding: 10px 46px 10px 16px;
+}
+
+.index_input_title {
+  padding-bottom: 5px;
+}
+
+.index_input_title input {
+  width: 100%;
+  height: 40px;
+  padding: 10px 16px;
+  border: 1px solid #eaedf0;
+  border-radius: 6px;
+  color: #353c49;
+  outline: none;
+}
+
+.index_input_desc {
+  width: 100%;
+  height: 200px;
+  padding: 10px 16px;
+  border: 1px solid #eaedf0;
+  border-radius: 6px;
+  color: #353c49;
+  outline: none;
+  resize: none;
+}
+
+.index_empty {
+  min-height: 40px;
+  margin-top: 24px;
+}
+
+.inex_side_area {
+  display: inline-block;
+  width: 376px;
+  margin: 15px 0 0 24px;
+  vertical-align: top;
+}
+
+.index_side_button {
+  padding: 16px;
+  border: 1px solid #eaedf0;
+  background: #ffffff;
+  text-align: center;
+}
+
+.index_side_button button {
+  width: 70%;
+}
+
+.index_confirm {
+  margin-left: 10px;
+  border: 0;
+}
+
+.index_comfirm_btn {
+  height: 40px;
+  padding: 10px 16px;
+  background: #4880ee;
+  border: 1px solid #4880ee;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.index_guide_area {
+  margin-top: 12px;
+  border: 1px solid #eaedf0;
+  background: #ffffff;
+}
+
+.index_guide_title {
+  position: relative;
+  padding: 16px;
+  border-bottom: 1px solid #eaedf0;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #353c49;
+}
+
+.index_guide_desc {
+  padding-top: 12px;
+  padding-right: 16px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+}
+
+.index_guide_desc_title {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  color: #353c49;
+}
+
+.index_guied_desc_content p {
+  padding-bottom: 4px;
+  padding-left: 15px;
+  background-size: 5px;
+  background-position-x: 1px;
+  background-position-y: 7px;
+  font-size: 12px;
+  line-height: 18px;
+  color: #505866;
+}
+
+.index_icon {
+  display: inline-block;
+  background: url(https://storage.cobak.co/icons/icon_ellipse_5px.svg) no-repeat;
+}

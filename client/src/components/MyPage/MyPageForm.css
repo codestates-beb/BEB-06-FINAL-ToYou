@@ -1,0 +1,237 @@
+* {
+  font-family: "Pretendard", "Noto Sans KR", Roboto;
+}
+
+* div {
+  display: block;
+}
+
+* ::before {
+  box-sizing: border-box;
+}
+
+.ant_layout {
+  min-width: 1280px;
+  background-color: #f8fafd;
+  display: flex;
+  -webkit-box-flex: 1;
+  flex: auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  min-height: 0;
+  background: #f0f2f5;
+}
+
+.ant_layout_content {
+  margin-top: 0px;
+  margin-right: auto;
+  margin-bottom: 70px;
+  margin-left: auto;
+  padding-top: 24px;
+  padding-right: 24px;
+  padding-bottom: 24px;
+  padding-left: 24px;
+  position: relative;
+  min-height: 720px;
+  width: 1220px;
+  background-color: white;
+}
+
+.index_user {
+  padding-top: 10px;
+  padding-right: 0px;
+  padding-bottom: 25px;
+  padding-left: 0px;
+  position: relative;
+}
+
+.ant_row {
+  position: relative;
+  height: auto;
+  margin-right: 0;
+  margin-left: 0;
+  zoom: 1;
+  display: block;
+}
+
+.ant_row ::before {
+  display: table;
+  content: "";
+}
+
+.index_mypage_left {
+  width: 376px;
+  margin-right: 24px;
+  flex-shrink: 0;
+}
+
+.ant_col_8 {
+  -webkit-box-flex: 0;
+  flex-grow: 0;
+  flex-basis: auto;
+  float: left;
+}
+
+.index_profile_wrap {
+  padding-top: 25px;
+  padding-right: 25px;
+  padding-bottom: 25px;
+  padding-left: 25px;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 1px 2px 0 rgb(128 138 157 / 12%),
+    0 4px 24px 0 rgb(128 138 157 / 8%);
+  border-radius: 12px;
+}
+
+.index_profile {
+  display: flex;
+  align-items: center;
+}
+
+.index_nickname {
+  font-size: 16px;
+  font-weight: 500;
+  color: #484f5b;
+}
+
+.level_progress_wrap {
+  margin-top: 3px;
+  background-color: white;
+  padding: 5px 0px;
+}
+
+.level_progress_level {
+  margin-top: 8px;
+  position: relative;
+  height: 14px;
+  font-size: 13px;
+  color: #949eac;
+  display: flex;
+}
+
+.mytab_wrapper {
+  position: relative;
+  height: auto;
+  border-top: none;
+}
+
+.earncc_earncc {
+  padding: 24px;
+  margin-top: 40px;
+  box-shadow: 0 1px 2px 0 rgb(128 138 157 / 12%),
+    0 4px 24px 0 rgb(128 138 157 / 8%);
+  border-radius: 12px;
+}
+
+.earncc_title {
+  font-size: 18px;
+  color: #1a1e27;
+  font-weight: 600;
+}
+
+.earncc_title_today {
+  font-weight: 500;
+  display: block;
+  margin-top: 24px;
+}
+
+.earncc_today_detail {
+  margin-top: 8px;
+  padding: 12px;
+  background-color: #ebf2fe;
+  border-radius: 21px;
+  text-align: center;
+  font-weight: 500;
+  color: #114ab8;
+}
+
+.mytab_notice1 {
+  margin-top: 40px;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 1px 2px 0 rgb(128 138 157 / 12%),
+    0 4px 24px 0 rgb(128 138 157 / 8%);
+  border-radius: 12px;
+}
+
+.notice1_img {
+  margin-top: -3px;
+  margin-right: 3px;
+  width: 15px;
+  height: 15px;
+  object-fit: cover;
+}
+
+.notice1_desc {
+  color: #868e96;
+  font-size: 13px;
+  line-height: 22px;
+  padding-top: 0px;
+  padding-right: 20px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+}
+
+.notice1_click {
+  color: #1890ff;
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0);
+  outline: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.notice1_click_click {
+  background-color: white;
+  color: #ff3f3f;
+  text-align: center;
+  padding: 14px;
+  margin: 24px;
+  margin-top: 0px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid #ff3f3f;
+  cursor: pointer;
+}
+
+.index_right {
+  width: 772px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: auto;
+  float: left;
+  position: relative;
+}
+
+.index_right_tab {
+  height: 55px;
+  line-height: 55px;
+  background-color: white;
+  align-items: center;
+}
+
+.tab_item_1 {
+  color: #1890ff;
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0);
+  outline: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.tab_item_1_detail {
+  height: 55px;
+  padding-top: 0px;
+  padding-right: 20px;
+  padding-bottom: 0px;
+  padding-left: 20px;
+  font-size: 17px;
+  color: #99a0ac;
+  font-weight: 500;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+}
