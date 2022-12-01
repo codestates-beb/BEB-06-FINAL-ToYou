@@ -9,9 +9,6 @@ const storage = multer.diskStorage({
     }
 })
 
-
-
-
 const Upload = multer({
     storage:storage
 });

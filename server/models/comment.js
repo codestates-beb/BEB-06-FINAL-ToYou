@@ -8,15 +8,11 @@ const Schema = mongoose.Schema;
 
 
 const commentSchema = mongoose.Schema({
-    writer: {
+    ID: {
         type: Schema.Types.ObjectId,
         ref:user
     }, 
-    postId: {
-        type: Schema.Types.ObjectId,
-        ref:user
-    },
-    boardId: {
+    boardID: {
         type: Schema.Types.ObjectId,
         ref:board 
     },
