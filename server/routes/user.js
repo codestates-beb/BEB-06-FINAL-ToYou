@@ -6,7 +6,7 @@ const { Comment } = require('../models/comment');
 const multer = require('multer');
 const Upload = require('../middleware/image-upload');
 const { imageUp } = require('../controllers/user');
-const { PostImage } = require('../controllers/board');
+const { PostImage, post } = require('../controllers/board');
 
 
 
@@ -41,7 +41,8 @@ router.post("/login", (req, res) => {
 
 
 //글쓰기--------------------------------------커뮤니티
-router.post("/write",Upload.single('image'),PostImage)
+router.post("/community/write",Upload.single('image'),PostImage)
+router.post("/community/write1",Upload.single('image'),post)
 
 //커뮤니티페이지 게시글 세부내용 보기
 router.get("/post/:post_id", (req, res) => {

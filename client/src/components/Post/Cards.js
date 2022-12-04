@@ -48,6 +48,7 @@ import "./Card.css"
           {BlogData.map((blg, index) => (
             // <Col sm="6" lg="6" xl="3" key={index}>
               <Blog
+                key={index}
                 image={blg.image}
                 title={blg.title}
                 subtitle={blg.subtitle}

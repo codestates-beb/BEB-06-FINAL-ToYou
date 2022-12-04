@@ -4,6 +4,7 @@ import MainPage from "./pages/MainPage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import CommunityPage from "./pages/CommunityPage";
+import CommunityDetail from "./components/Detail/CommunityDetail";
 import InvestPage from "./pages/InvestPage";
 import StartupPage from "./pages/StartupPage";
 import StartupDetail from "./components/StartupPage/StartupDetail";
@@ -23,6 +24,7 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/community" element={<CommunityPage />} />
+          <Route path="/community/:id" element={<CommunityDetail />} />
           <Route path="/postadd" element={<PostAdd />} />
           <Route path="/invest" element={<InvestPage />} />
           <Route path="/startup" element={<StartupPage />} />

@@ -36,7 +36,7 @@ const LoginForm = () => {
       )
       .then(function (response) {
         // 로그인 성공시 메인페이지로 이동
-        console.log(response.data);
+        console.log(response);
         setUser(response.data);
         Swal.fire({
           position: "top-end",
