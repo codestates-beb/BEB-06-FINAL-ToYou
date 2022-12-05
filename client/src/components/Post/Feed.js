@@ -7,24 +7,49 @@ import Post from "./Post";
 import Pagination from "react-js-pagination";
 import "./Paging.css";
 import Cards from "./Cards";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { userState } from "../../recoil";
+import { useRecoilState } from "recoil";
 
 const Feed = () => {
+  const [user, setUser] = useRecoilState(userState);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * 5;
+
+  // post 값 받아오기--------------
+  const [post, setPost] = useState([]);
+
+  useEffect(()=>{
+  axios.get("http://localhost:4000/community",{withCredentials: true})
+      .then((response) =>{
+        // console.log(response.data)
+         setPost(response.data)
+      })
+      .catch((Error)=>{
+          Swal.fire({
+              icon: 'error',
+              text: Error,
+          })
+      })
+  }, [])
+  //----------------------------
+
 
   const handlePageChange = (page) => {
     setPage(page);
   };
 
-  const [filterd, setFilterdBoard] = useState("전체 게시판");
-  const [data, setData] = useState(item.data);
+  const [filterd, setFilterdBoard] = useState("전체게시판");
+  const [data, setData] = useState(post);
 
-  // console.log(filterd);
+  console.log(filterd);
+  console.log(data)
 
   useEffect(() => {
-    filterd === "전체 게시판"
-      ? setData(item.data)
-      : setData(item.data.filter((vga) => vga.board === filterd));
+    filterd === "전체게시판"
+      ? setData(post)
+      : setData(post.filter((vga) => vga.Type === filterd));
   }, [filterd]);
 
   //sort -----------------
@@ -59,31 +84,32 @@ const Feed = () => {
           <div className="inner-wrapper">
             <div className="inner-sidebar">
               <div className="inner-sidebar-header">
+              {user ? (
                 <Link to="/postadd">
                   <button className="postAdd__button" type="button">
                     <span>+ 게시글 작성</span>
                   </button>
                 </Link>
+              ) : null }
               </div>
               <div className="inner-sidebar-body">
                 <FilterButton
-                  board="전체 게시판"
-                  active={filterd === "전체 게시판" ? true : false}
+                  board="전체게시판"
+                  active={filterd === "전체게시판" ? true : false}
                   handleBoard={setFilterdBoard}
                 />
                 <FilterButton
-                  board="코인 잡담"
-                  active={filterd === "코인 잡담" ? true : false}
+                  board="코인잡담"
+                  active={filterd === "코인잡담" ? true : false}
                   handleBoard={setFilterdBoard}
                 />
                 <FilterButton
-                  board="코인 정보"
-                  active={filterd === "코인 정보" ? true : false}
+                  board="코인정보"
+                  active={filterd === "코인정보" ? true : false}
                   handleBoard={setFilterdBoard}
                 />
               </div>
             </div>
-
             <div className="inner-main">
               <div className="inner-main-header">
                 <select className="main-header-select">
@@ -91,16 +117,13 @@ const Feed = () => {
                   <option value="2">Popular</option>
                 </select>
               </div>
-              {data.slice(offset, offset + 5).map((el) => (
-                <div key={el.id}>
+              {post.slice(offset, offset + 5).map((el,index) => (
+                <div key={index}>
                   <Post
-                    board={el.board}
                     title={el.title}
                     comment={el.comment}
-                    nickname={el.nickname}
-                    date={el.date}
-                    view_count={el.view_count}
-                    comment_count={el.comment_count}
+                    createAT={el.createAT}
+                    Type={el.Type}
                   />
                 </div>
               ))}
@@ -118,7 +141,7 @@ const Feed = () => {
           </div>
         </div>
         <div className="row_cards">
-          <h1 class="mb-3">Trading Tips</h1>
+          <h1 className="mb-3">Trading Tips</h1>
           <Cards />
         </div>
       </div>
