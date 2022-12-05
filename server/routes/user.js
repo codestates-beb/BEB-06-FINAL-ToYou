@@ -3,10 +3,12 @@ const router = express.Router();
 const { user } = require("../models/user");
 const { board } = require("../models/board");
 const { Comment } = require('../models/comment');
+const { corp } = require('../models/corp');
 const multer = require('multer');
 const Upload = require('../middleware/image-upload');
 const { imageUp } = require('../controllers/user');
-const { PostImage, post } = require('../controllers/board');
+const { PostImage } = require('../controllers/board');
+const { CorpImage } = require('../controllers/corp');
 
 
 
@@ -41,8 +43,7 @@ router.post("/login", (req, res) => {
 
 
 //글쓰기--------------------------------------커뮤니티
-router.post("/community/write",Upload.single('image'),PostImage)
-router.post("/community/write1",Upload.single('image'),post)
+router.post("/write",Upload.single('image'),PostImage)
 
 //커뮤니티페이지 게시글 세부내용 보기
 router.get("/post/:post_id", (req, res) => {
@@ -197,12 +198,44 @@ router.get("/board", (req, res) => {
   });
 
 
-
 router.post("/regist/image", Upload.single("image"),function(req,res){
     console.log(req.body,"요청")
     res.status(200).json({success: true ,filepath:res.req.file.path })
 })
 
+
+//스타트업글쓰기
+router.post("/corpWrite",Upload.single('image'),CorpImage)
+
+
+//스타트업게시판
+router.get("/startUp", async (req, res) => {
+    const corplist =  corp.find({})
+    res.status(200).json(corplist);
+    
+});
+
+//메인 페이지
+router.get("/main", async (req, res) => {
+    const corplist = await corp.find({});
+    res.status(200).json(corplist);
+});
+
+router.post('/corp/:num', async (req, res) => {
+  console.log(req.body)
+  try {
+    const num =await corp.findOne({ _id: req.params.num }).then(num =>{
+      const count = req.body.click
+      corp.updateOne({_id:num._id},{$set: {click:count}},function(){});
+      return res.status(200).json(num);
+     
+    })
+} catch (err) {
+  console.error(err);
+}
+});
+
+
+
+
 module.exports = router;
-
-

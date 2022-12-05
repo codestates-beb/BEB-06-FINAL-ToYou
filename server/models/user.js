@@ -20,7 +20,7 @@ const userSchema= new Schema({
     token_value: {type: String},
     won_value: {type: String},
     val:{type: String,},
-    up:[{type: Schema.Types.ObjectId,  ref:'board'}],  
+    up:[{type: Schema.Types.ObjectId,  ref:'board', ref:'corp'}],  
     createAT:{type:String, default: date, },
     userType:{type:Number, default:0
     }
