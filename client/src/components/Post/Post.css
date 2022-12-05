@@ -80,3 +80,7 @@
     align-items:flex-end;
     padding-top: 20px
 }
+
+.post-id{
+    display: none;
+}
