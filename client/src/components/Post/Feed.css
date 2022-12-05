@@ -135,3 +135,7 @@
 .row_cards {
   padding-top: 5rem;
 }
+
+.hidden_community{
+  display: none;
+}

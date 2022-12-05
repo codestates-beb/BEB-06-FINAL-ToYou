@@ -4,6 +4,7 @@ import "./Feed.css";
 import item from "./PostDummy.json";
 import FilterButton from "./FilterButton";
 import Post from "./Post";
+import CommunityDetail from "../Detail/CommunityDetail";
 import Pagination from "react-js-pagination";
 import "./Paging.css";
 import Cards from "./Cards";
@@ -11,6 +12,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { userState } from "../../recoil";
 import { useRecoilState } from "recoil";
+import { boardState } from "../../recoil";
 
 const Feed = () => {
   const [user, setUser] = useRecoilState(userState);
@@ -18,13 +20,18 @@ const Feed = () => {
   const offset = (page - 1) * 5;
 
   // post 값 받아오기--------------
+  // const [post1, setPost1] = useRecoilState(boardState);
   const [post, setPost] = useState([]);
+
+  // console.log(post1)
+  // console.log(post)
 
   useEffect(()=>{
   axios.get("http://localhost:4000/community",{withCredentials: true})
       .then((response) =>{
         // console.log(response.data)
          setPost(response.data)
+        //  setPost1(response.data)
       })
       .catch((Error)=>{
           Swal.fire({
@@ -35,6 +42,33 @@ const Feed = () => {
   }, [])
   //----------------------------
 
+  // console.log(post[0]._id)
+  // const [detailid, setDetailid] =useState()
+  // console.log(detailid)
+
+  // const detailClick = () => {
+  //   {post.map((el) => (
+  //   axios.post(`http://localhost:4000/community/${el._id}`,{withCredentials: true})
+  //     .then((response) =>{
+  //       // console.log(response.data)
+  //        setPost(response.data)
+  //     })
+  //     .catch((Error)=>{
+  //         Swal.fire({
+  //             icon: 'error',
+  //             text: Error
+  //         })
+  //     })
+  //   )}
+  // }
+
+  // const getDetail =(e) =>{
+  //   const detail = e.target.value
+  //   return setDetailid(detail);
+  // }
+
+  //----------------------------
+
 
   const handlePageChange = (page) => {
     setPage(page);
@@ -43,8 +77,8 @@ const Feed = () => {
   const [filterd, setFilterdBoard] = useState("전체게시판");
   const [data, setData] = useState(post);
 
-  console.log(filterd);
-  console.log(data)
+  // console.log(filterd);
+  // console.log(data)
 
   useEffect(() => {
     filterd === "전체게시판"
@@ -118,13 +152,21 @@ const Feed = () => {
                 </select>
               </div>
               {post.slice(offset, offset + 5).map((el,index) => (
-                <div key={index}>
+                <div key={index} >
+                  <Link to={`/community/${el._id}`}>
+                    {/* <div className="hidden_community">
+                    <CommunityDetail
+                      c_id={el._id}
+                    />
+                    </div> */}
                   <Post
                     title={el.title}
                     comment={el.comment}
                     createAT={el.createAT}
                     Type={el.Type}
+                    _id={el._id}
                   />
+                  </Link>
                 </div>
               ))}
               <Pagination

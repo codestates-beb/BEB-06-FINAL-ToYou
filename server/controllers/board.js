@@ -30,6 +30,6 @@ exports.post = (req, res, next) => {
 const Submit = new board(postboard)
   Submit.save((err,doc)=>{
     if(err) return res.status(404).json({fail: false, err})
-    return res.status(200).json({success:true})
+    return res.status(200).json(doc)
 })
 }

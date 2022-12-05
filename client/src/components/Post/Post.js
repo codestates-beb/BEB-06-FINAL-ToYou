@@ -4,7 +4,7 @@ import { useRecoilState } from "recoil";
 import { userState } from "../../recoil/user";
 // import { boardState } from "../../recoil/board";
 
-const Post = ({title, comment, createAT, Type}) => {
+const Post = ({title, comment, createAT, Type, _id}) => {
 
     const [user, setUser] = useRecoilState(userState);
 
@@ -25,12 +25,17 @@ const betweenTime = (value) =>{
 };
 
 
+  const postClick = (e) => {
+    console.log(e.target)
+  }
+
     return (
-        <div className="inner-main-body">
+        <div className="inner-main-body" onClick={postClick}>
                     <div className="card-2">
                         <div className="card-body">
                             <div className="media">
-                                <div className="media-body">
+                                <div className="media-body" >
+                                    <div className="post-id">{_id}</div>
                                     <div className="text-title">{title}</div>
                                     <div className="text-comment">{comment}</div>
                                     <div className="text-nickname">{user.nick}
