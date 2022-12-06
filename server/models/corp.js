@@ -38,7 +38,7 @@ const corpSchema = new schema({
     zone: {
         type: String
     },
-    upz:[{type: Schema.Types.ObjectId, ref:'user'}],
+    up:[{type: Schema.Types.ObjectId, ref:'user'}],
     createAT:{
         type:String,
         default: date,

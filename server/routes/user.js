@@ -215,25 +215,32 @@ router.get("/startUp", async (req, res) => {
     
 });
 
-//메인 페이지
-router.get("/main", async (req, res) => {
-    const corplist = await corp.find({});
-    res.status(200).json(corplist);
-});
-
-router.post('/corp/:num', async (req, res) => {
-  console.log(req.body)
+//좋아요
+router.put('/:corp_id/up', async (req, res) => {
   try {
-    const num =await corp.findOne({ _id: req.params.num }).then(num =>{
-      const count = req.body.click
-      corp.updateOne({_id:num._id},{$set: {click:count}},function(){});
-      return res.status(200).json(num);
-     
+    const corpID = req.body.corpID; // 스타트업 고유아이디
+    const userID = req.body._id; // 유저 고유아이디
+
+    const Up = req.body.up && req.body.up.includes(userID) 
+    
+    const option = Up ? "$pull" : "$addToSet";
+      console.log(option)
+    req.body._id = await corp.findByIdAndUpdate(corpID, { [option]: {up:userID} },{new:true})
+    .catch(err =>{
+      res.status(400).json({success:false})
     })
-} catch (err) {
-  console.error(err);
-}
+     
+
+      res.status(200).json({success:true})
+  } catch (err) {
+    console.error(err);
+  }
 });
+// //메인 페이지
+// router.get("/main", async (req, res) => {
+//     const corplist = await corp.find({});
+//     res.status(200).json(corplist);
+// });
 
 
 
