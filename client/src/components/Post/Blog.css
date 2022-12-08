@@ -1,0 +1,40 @@
+.blog_wrpper {
+    flex: 0 0 auto;
+    width: 25%;
+    
+}
+
+
+.blog_card {
+    width: 25%;
+    margin-right: 5px;
+    margin-left: 5px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.3rem;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 5%);
+}
+
+.blog_img {
+    height: auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+}
+
+.blog_button {
+    width: 180px;
+    height: 50px;
+    margin: 20px 20px;
+    color: black;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 5px;
+}

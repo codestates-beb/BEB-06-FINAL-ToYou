@@ -1,0 +1,155 @@
+.actionBtn11 {
+    position:relative;
+    display:block;
+    width:40px;
+    height:40px;
+    margin:auto;
+    box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+}
+.actionBtn11 span {
+    display:block;
+}
+.actionBtn11 .hover:after {
+    display:block;
+    content:"";
+    position:relative;
+    width:38px;
+    height:38px;
+    border:1px solid #4b4b4b;
+    background-color:#e7e7e7;
+    transition:transform .5s;
+    -webkit-transition:-webkit-transform .5s;
+    -moz-transition:-moz-transform .5s;
+}
+.actionBtn11 .hover .line1, .actionBtn11 .hover .line2 {
+    position:absolute;
+    z-index:10;
+    left:8px;
+    top:18px;
+    width:24px;
+    height:4px;
+    background-color:#444;
+    transition:transform .7s;
+    -webkit-transition:-webkit-transform .7s;
+    -moz-transition:-moz-transform .7s;
+} .actionBtn11 .hover .line1 {
+    transform:rotate(90deg);
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+}
+.actionBtn11 .hover .line2 {
+    transform:rotate(0deg);
+    -webkit-transform:rotate(0deg);
+    -moz-transform:rotate(0deg);
+}
+.actionBtn11:hover .hover .line1 {
+    transform:rotate(-45deg);
+    -webkit-transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    background-color:#e7e7e7;
+}
+.actionBtn11:hover .hover .line2 {
+    transform:rotate(-135deg);
+    -webkit-transform:rotate(-135deg);
+    -moz-transform:rotate(-135deg);
+    background-color:#e7e7e7;
+}
+.actionBtn11:hover .hover:after {
+    transform:rotate(45deg);
+    -webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    background-color:#444;
+}
+
+
+
+
+
+
+
+
+
+.wrapper{
+    display: flex;
+    height: 50vh;
+    width: 200vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.accordion{
+    width: 800px;
+}
+
+.item{
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    padding: 10px 20px;
+    border-radius: .5em;
+}
+
+.title{
+    color: brown;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    cursor: pointer;
+}
+
+.plus{
+    background-color: aqua;
+ 
+}
+
+.content{
+    color: gray;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0,1,0,1);
+}
+
+.content.show{
+    height: auto;
+    max-height: 9999px;
+    transition: all 0.5s cubic-bezier(1,0,1,0);
+}
+
+
+
+
+
+.list-group {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #ccc;
+    border-radius: .5em;
+    width: 50em;
+    
+}
+
+.list-group li {
+    border-top: 1px solid #ccc;
+    padding: .5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5em;
+}
+
+.list-group li:first-child {
+    border-top: 0;
+}
+
+.list-group .badge {
+    background-color: rebeccapurple;
+    color: #fff;
+    font-weight: bold;
+    font-size: 80%;
+    border-radius: 10em;
+    min-width: 1.5em;
+    padding: .25em;
+    text-align: center
+}
