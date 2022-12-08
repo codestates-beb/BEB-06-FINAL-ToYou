@@ -1,0 +1,53 @@
+.stu_container {
+  background: #f0f2f5;
+  padding-right: 16px;
+  padding-left: 16px;
+  width: 100%;
+  position: relative;
+}
+
+.stu_category {
+  line-height: 30px;
+  letter-spacing: -0.6px;
+  font-size: 20px;
+  font-weight: 700;
+  font-style: normal;
+  display: inline-flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #f2f4f6;
+  padding-top: 24px;
+  padding-bottom: 8px;
+  width: 100%;
+}
+
+.stu_category_ti {
+  display: flex;
+  align-items: baseline;
+}
+
+.stu_desc_ti {
+  line-height: 18px;
+  letter-spacing: 0;
+  font-size: 12px;
+  font-weight: 400;
+  font-style: normal;
+  color: #495057;
+  margin-left: 8px;
+}
+
+.stu_list_container {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.stu_card_table_container {
+  width: calc(100% - 0px);
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  list-style: none;
+}

@@ -1,0 +1,104 @@
+{
+    "data" : [
+        {
+         "id" : 1,
+         "board" : "코인 잡담",
+         "title" : "안녕하세요",
+         "comment" : "처음 뵙겠습니다.",
+         "nickname" : "yoo",
+         "date" : "13",
+         "view_count" : 3,
+         "comment_count" : 10
+        },
+        {
+         "id" : 2,
+         "board" : "코인 잡담",
+         "title" : "반갑습니다",
+         "comment" : "처음 뵙겠습니다.처음 뵙겠습니다.처음 뵙겠습니다.처음 뵙겠습니다.처음 뵙겠습니다.처음 뵙겠습니다.처음 뵙겠습니다.처음 뵙겠습니다.",
+         "nickname" : "san",
+         "date" : "8",
+         "view_count" : 5,
+         "comment_count" : 15
+        },
+        {
+         "id" : 3,
+         "board" : "코인 정보",
+         "title" : "안녕하세요",
+         "comment" : "처음 뵙겠습니다.",
+         "nickname" : "too",
+         "date" : "10",
+         "view_count" : 20,
+         "comment_count" : 4
+        },
+        {
+         "id" : 4,
+         "board" : "코인 정보",
+         "title" : "정보 드립니다",
+         "comment" : "123456",
+         "nickname" : "yoo",
+         "date" : "1",
+         "view_count" : 23,
+         "comment_count" : 1
+        },
+        {
+            "id" : 5,
+            "board" : "코인 정보",
+            "title" : "처음 가입했어요",
+            "comment" : "처음 뵙겠습니다.",
+            "nickname" : "too",
+            "date" : "10",
+            "view_count" : 20,
+            "comment_count" : 4
+           },
+           {
+            "id" : 6,
+            "board" : "코인 정보",
+            "title" : "정보 드립니다",
+            "comment" : "123456",
+            "nickname" : "yoo",
+            "date" : "1",
+            "view_count" : 23,
+            "comment_count" : 1
+           },
+           {
+            "id" : 7,
+            "board" : "코인 정보",
+            "title" : "처음 가입했어요",
+            "comment" : "처음 뵙겠습니다.",
+            "nickname" : "too",
+            "date" : "10",
+            "view_count" : 20,
+            "comment_count" : 4
+           },
+           {
+            "id" : 8,
+            "board" : "코인 정보",
+            "title" : "정보 드립니다",
+            "comment" : "123456",
+            "nickname" : "yoo",
+            "date" : "1",
+            "view_count" : 23,
+            "comment_count" : 1
+           },
+           {
+            "id" : 9,
+            "board" : "코인 정보",
+            "title" : "처음 가입했어요",
+            "comment" : "처음 뵙겠습니다.",
+            "nickname" : "too",
+            "date" : "10",
+            "view_count" : 20,
+            "comment_count" : 4
+           },
+           {
+            "id" : 10,
+            "board" : "코인 정보",
+            "title" : "정보 드립니다",
+            "comment" : "123456",
+            "nickname" : "yoo",
+            "date" : "1",
+            "view_count" : 23,
+            "comment_count" : 1
+           }
+      ]
+    }
