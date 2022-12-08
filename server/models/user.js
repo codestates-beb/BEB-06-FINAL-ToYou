@@ -11,12 +11,17 @@ const userSchema= new Schema({
     pwd:{type: String,},
     name: {type:String},
     account: {type:String},
+    contract:{
+        write:[{type:String,dfrault:''}],
+        postUp:[{type:String,dfrault:''}],
+        staking:[{type:String,dfrault:''}]
+    },
     nick:{type: String, maxlength : 10, trip: true, unique:1},
     image:{type:String},
     level:{type: Number, default:0,},
     exp:{type:String, default:0,},
     token: {type: String},
-    tokenExp: {type: Number},
+    tokenExp: {type: String,default:0},
     token_value: {type: String},
     won_value: {type: String},
     val:{type: String,},
@@ -32,3 +37,4 @@ const userSchema= new Schema({
 const user = mongoose.model('user',userSchema)
 
 module.exports={user}
+

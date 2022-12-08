@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { board } = require('../models/board');
 const {user} = require("../models/user")
-
+const {Comment} = require("../models/comment")
 
 //초기데이터 메인화면
 router.get('/toyou', function (req,res){
@@ -31,6 +31,14 @@ router.get('/commun', function (req,res){
 // 모든 게시글 요청
 router.get('/community', function (req,res){
     board.find({}).limit(10).sort({number:-1}).exec((err,data)=>{
+        if(err) return res.status(500).send({error: 'database err'});
+        res.json(data);
+    })
+    
+})
+//모든 댓글 테스트
+router.get('/riple', function (req,res){
+    Comment.find({}).limit(10).sort({number:-1}).exec((err,data)=>{
         if(err) return res.status(500).send({error: 'database err'});
         res.json(data);
     })

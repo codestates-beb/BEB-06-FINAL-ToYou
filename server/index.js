@@ -24,8 +24,8 @@ app.use(
     }),
   );
 
-  app.use('/', require('./routes/toyou.js'))
-  app.use('/', require('./routes/user.js'))
+   app.use('/', require('./routes/toyou.js'))
+   app.use('/', require('./routes/user.js'))
 
 
 

@@ -6,7 +6,7 @@ const { Comment } = require('../models/comment');
 const multer = require('multer');
 const Upload = require('../middleware/image-upload');
 const { imageUp } = require('../controllers/user');
-const { PostImage } = require('../controllers/board');
+const { postImage, post } = require('../controllers/board');
 
 
 
@@ -17,6 +17,7 @@ const data = user.find({},function(err,docs){
 
 //회원가입-------------------------회원가입/로그인
 router.post("/register",Upload.single('image'),imageUp)
+
 
 
 
@@ -41,7 +42,38 @@ router.post("/login", (req, res) => {
 
 
 //글쓰기--------------------------------------커뮤니티
-router.post("/write",Upload.single('image'),PostImage)
+
+
+router.post("/write",Upload.single('image'),postImage)
+
+router.post("/write1",post)
+
+
+router.get("/mypage/:user_id", (req, res) => {
+  const 유저아이디 = req.params.user_id;
+  console.log(유저아이디)
+
+  board.find({ID:유저아이디}, (err, users)=>{
+      console.log(users,"유저스")
+      if(!users){
+          return res.status(404).json({fail: false, err})
+      } else{
+          return res.status(200).json(users)
+      }
+      
+  });  
+
+});
+
+
+
+
+
+
+
+
+
+
 
 //커뮤니티페이지 게시글 세부내용 보기
 router.get("/post/:post_id", (req, res) => {
@@ -61,10 +93,10 @@ router.get("/post/:post_id", (req, res) => {
 });
 
 // 커뮤니티페이지 게시글 조회수 기능테스트
-router.post('/community/:number', async (req, res) => {
-    console.log(req.body)
+router.post('/community/:_id', async (req, res) => {
+    
     try {
-      const number =await board.findOne({ _id: req.params.number }).then(num =>{
+      const number =await board.findOne({ _id: req.params._id }).then(num =>{
         const count = req.body.click
          board.updateOne({_id:num._id},{$set: {click:count}},function(){});
         return res.status(200).json(num);
@@ -80,22 +112,87 @@ router.post('/community/:number', async (req, res) => {
   });
 
 
+  router.put('/community/test', async (req, res) => {
+    try {
+      const postID = req.body.postID; //게시글 고유아이디 _id
+      const userID = req.body._id; //유저 고유아이디 _id
+
+      //좋아요 로직 - 게시물 좋아요배열 내 유저_id가 있으면 True , 없다면 false
+      const Up = req.body.up && req.body.up.includes(postID)  // up에 유저아이디 and 
+      console.log(Up)
+    }catch{
+
+    }
+})
+
+
+//만일 스타트업 모델에 UP  / DOWN 
+// UP 0  DOWN 0
+// UP 1  Down 1   ->      UP 1 DOWN 0  or UP 0 DOWN 1
+
+router.put('/:corp_id/up', async (req, res) => {
+  try {
+    const corpID = req.params; //게시글 고유아이디 _id
+    const userID = req.body._id; //유저 고유아이디 _id
+
+    //좋아요 로직 - 게시물 좋아요배열 내 유저_id가 있으면 True , 없다면 false
+    const Up = req.body.up && req.body.up.includes(userID)  // up에 유저아이디가 있다면 true , 없다면 false
+    console.log(Up,"업")
+    const option = Up ? "$pull":"$addToSet";
+      console.log(option)
+    req.body._id = await board.findByIdAndUpdate(postID, { [option]: {up:userID} },{new:true})
+    .catch(err =>{
+      res.status(400).json({success:false})
+    })
+    res.status(200).json(req.body._id)
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+
+
+
+
+
+
 // 게시물 좋아요 기능
   router.put('/community/:number/up', async (req, res) => {
     try {
-      const postID = req.body.postID;
-      const userID = req.body._id;
-      const Up = req.body.up && req.body.up.includes(postID)
+      const postID = req.body.postID; //게시글 고유아이디 _id
+      const userID = req.body._id; //유저 고유아이디 _id
 
-      const option = Up ? "$pull" : "$addToSet";
+      //좋아요 로직 - 게시물 좋아요배열 내 유저_id가 있으면 True , 없다면 false
+      const Up = req.body.up && req.body.up.includes(userID)  // up에 유저아이디가 있다면 true , 없다면 false
+      console.log(Up,"업")
+      const option = Up ? "$pull":"$addToSet";
         console.log(option)
       req.body._id = await board.findByIdAndUpdate(postID, { [option]: {up:userID} },{new:true})
       .catch(err =>{
         res.status(400).json({success:false})
       })
-       
-  
-        res.status(200).json({success:true})
+      res.status(200).json(req.body._id)
+    } catch (err) {
+      console.error(err);
+    }
+  });
+
+//댓글 작성 기능 보완한거----------------------------------------------------------------
+  router.put('/write/:number', async (req, res) => {
+    try {
+      const postID = req.body.postID; //게시글 고유아이디 _id
+      const userID = req.body.riple.user; //유저 고유아이디 _id
+      const comments = req.body.riple.comment
+      const usname = req.body.riple.username
+      console.log(comments)
+
+      //좋아요 로직 - 게시물 좋아요배열 내 유저_id가 있으면 True , 없다면 false
+      const option ="$addToSet";
+      req.body._id = await board.findByIdAndUpdate(postID, { [option]: {riple:{user:userID,comment:comments,username:usname}} },{new:true})
+      .catch(err =>{
+        res.status(400).json({success:false})
+      })
+      res.status(200).json({success:true})
     } catch (err) {
       console.error(err);
     }

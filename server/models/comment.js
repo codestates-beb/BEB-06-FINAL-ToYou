@@ -22,7 +22,8 @@ const commentSchema = mongoose.Schema({
     createAT:{
         type:String,
         default: date,
-    }
+    },
+    riple:[{type: Schema.Types.ObjectId,  ref:'board'}]
 
 })
 

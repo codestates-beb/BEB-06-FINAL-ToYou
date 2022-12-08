@@ -8,7 +8,7 @@ const AutoIncrement = require("mongoose-sequence")(mongoose);
 const schema = mongoose.Schema;
 
 const boardSchema =new schema({
-    id:{
+    ID:{
         type: Schema.Types.ObjectId,  
         ref:'user',
         require: true
@@ -35,12 +35,10 @@ const boardSchema =new schema({
         type:String
     },
     Type:{
-        type: Number
+        type: String
     },
-    up:[{
-        type: Schema.Types.ObjectId,  
-        ref:'user'
-    }],
+    up:[{type: Schema.Types.ObjectId,  ref:'user'}],
+    riple:[{user:{type: Schema.Types.ObjectId,  ref:'comment'},comment:{type:String},username:{type:String},create:{type:String,default:date}}],  
     createAT:{
         type:String,
         default: date,
